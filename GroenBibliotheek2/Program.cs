@@ -88,6 +88,18 @@ namespace GroenBibliotheek2
 
         }
 
+        static double berekenTotaleBoete(ref Dictionary<string, Boek> tboeken)
+        {
+            double tboete = 0.0;
+
+            foreach(string boeknum in tboeken.Keys)
+            {
+                tboete += tboeken[boeknum].Boete;
+            }
+
+            return tboete;
+        }
+
         static void Main(string[] args)
         {
             var tboeken = new Dictionary<string, Boek>();
@@ -109,6 +121,8 @@ namespace GroenBibliotheek2
             {
                 Console.WriteLine("{0} / {1}", boeknummer, tboeken[boeknummer]);
             }
+
+            Console.WriteLine("U moet een totale boete betalen ter hoogte van: {0}", berekenTotaleBoete(ref tboeken));
 
         }
     }

@@ -79,16 +79,6 @@ namespace GroenBibliotheek2
                 Console.WriteLine("{0} / {1}", boeknummer, tboeken[boeknummer]);
             }
 
-            //var uitleendat = DateTime.Parse("2018/08/01");
-            //var retourdat = DateTime.Parse("2018/08/03");
-
-            //var boek = new Boek("9321", uitleendat, retourdat);
-            //Console.WriteLine(boek.Bnummer);
-            //Console.WriteLine(boek.Btype);
-            //Console.WriteLine(boek.Uitleendat);
-            //Console.WriteLine(boek.Retourdat);
-            //Console.WriteLine(boek.Boete);
-
         }
     }
 }

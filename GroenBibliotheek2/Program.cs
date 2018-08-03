@@ -21,6 +21,11 @@ namespace GroenBibliotheek2
         public DateTime Uitleendat { get; set; }
         public DateTime Retourdat { get; set; }
         public Double Boete { get; set; }
+
+        public override string ToString()
+        {
+            return Bnummer + " " + Btype + " " + Uitleendat + " " + Retourdat + " " + Boete;
+        }
     }
 
     class Program
@@ -71,7 +76,7 @@ namespace GroenBibliotheek2
 
             foreach (string boeknummer in tboeken.Keys)
             {
-                Console.WriteLine("{0} / {1}; {2}; {3}; {4}, {5}", boeknummer, tboeken[boeknummer].Bnummer, tboeken[boeknummer].Btype, tboeken[boeknummer].Uitleendat, tboeken[boeknummer].Retourdat, tboeken[boeknummer].Boete);
+                Console.WriteLine("{0} / {1}", boeknummer, tboeken[boeknummer]);
             }
 
             //var uitleendat = DateTime.Parse("2018/08/01");

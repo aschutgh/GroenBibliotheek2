@@ -59,6 +59,35 @@ namespace GroenBibliotheek2
 
         }
 
+        static void berekenBoetePerBoek(ref Dictionary<string, Boek> tboeken)
+        {
+            foreach(string boeknum in tboeken.Keys)
+            {
+                switch (tboeken[boeknum].Btype)
+                {
+                    case "roman":
+                        TimeSpan ad = tboeken[boeknum].Retourdat - tboeken[boeknum].Uitleendat;
+                        if (ad.Days > 21)
+                        {
+                            tboeken[boeknum].Boete = (ad.Days - 21) * 0.25;
+                        }
+                        break;
+                    case "studieboek":
+                        ad = tboeken[boeknum].Retourdat - tboeken[boeknum].Uitleendat;
+                        if (ad.Days > 30)
+                        {
+                            tboeken[boeknum].Boete = ((ad.Days - 30) / 7) * 1; // expliciet uitrekenen
+                            if ((ad.Days - 30) % 7 > 0)
+                            {
+                                tboeken[boeknum].Boete += 1; // voor een deel v.d. week krijg je ook een euro boete
+                            }
+                        }
+                        break;
+                }
+            }
+
+        }
+
         static void Main(string[] args)
         {
             var tboeken = new Dictionary<string, Boek>();
@@ -73,6 +102,8 @@ namespace GroenBibliotheek2
                     meerboeken = false;
                 }
             }
+
+            berekenBoetePerBoek(ref tboeken);
 
             foreach (string boeknummer in tboeken.Keys)
             {
